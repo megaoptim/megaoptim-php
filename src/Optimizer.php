@@ -24,6 +24,8 @@ use MegaOptim\Http\Client;
 use MegaOptim\Responses\Response;
 use MegaOptim\Services\OptimizerService;
 use MegaOptim\Tools\FileSystem;
+use MegaOptim\Tools\PATH;
+use MegaOptim\Tools\URL;
 
 class Optimizer {
 
@@ -163,11 +165,11 @@ class Optimizer {
 
 	/**
 	 * Returns the results of the process
-	 *
 	 * @param $process_id
-	 * @param $max_wait_seconds
+	 * @param int $max_wait_seconds
 	 *
 	 * @return Response
+	 * @throws \Exception
 	 */
 	public function get_result( $process_id, $max_wait_seconds = 5 ) {
 		$result = $this->service->get_result( $process_id, $max_wait_seconds );
@@ -201,38 +203,7 @@ class Optimizer {
 	 * @return bool
 	 */
 	public static function is_url( $resource ) {
-		return ! ! filter_var( $resource, FILTER_VALIDATE_URL );
-	}
-
-	/**
-	 * Check if the given path is support image type (jpg,png,gif,svg)
-	 *
-	 * @param string $path - The local temporary path
-	 *
-	 * @return bool
-	 */
-	public static function is_supported( $path ) {
-		return array_key_exists( pathinfo( $path, PATHINFO_EXTENSION ), self::accepted_types() );
-	}
-
-	/**
-	 * Return the accepted file types
-	 * @return array
-	 */
-	public static function accepted_types() {
-		return array(
-			'png'  => 'image/png',
-			'jpe'  => 'image/jpeg',
-			'jpeg' => 'image/jpeg',
-			'jpg'  => 'image/jpeg',
-			'gif'  => 'image/gif',
-			//'bmp' => 'image/bmp',
-			//'ico' => 'image/vnd.microsoft.icon',
-			//'tiff' => 'image/tiff',
-			//'tif' => 'image/tiff',
-			//'svg'  => 'image/svg+xml',
-			//'svgz' => 'image/svg+xml',
-		);
+		return URL::validate($resource);
 	}
 
 	/**
