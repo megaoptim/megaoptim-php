@@ -190,20 +190,9 @@ class Optimizer {
 	 * @throws \Exception
 	 */
 	public static function validate( $resource, $args ) {
-		if ( isset( $args['callback_url'] ) && self::is_url( $resource ) ) {
+		if ( isset( $args['callback_url'] ) && URL::validate( $resource ) ) {
 			throw new \Exception( 'Invalid callback url' );
 		}
-	}
-
-	/**
-	 * Check if given resource is url
-	 *
-	 * @param $resource
-	 *
-	 * @return bool
-	 */
-	public static function is_url( $resource ) {
-		return URL::validate($resource);
 	}
 
 	/**
@@ -221,7 +210,7 @@ class Optimizer {
 			$is_url  = 0;
 			$is_file = 0;
 			foreach ( $resource as $file ) {
-				if ( self::is_url( $file ) ) {
+				if ( URL::validate( $file ) ) {
 					$is_url  = 1;
 					$is_file = 0;
 				} else {
@@ -243,7 +232,7 @@ class Optimizer {
 			}
 		} else if ( file_exists( $resource ) ) {
 			$resource_type = Optimizer::RESOURCE_FILE;
-		} else if ( Optimizer::is_url( $resource ) ) {
+		} else if ( URL::validate( $resource ) ) {
 			$resource_type = Optimizer::RESOURCE_URL;
 		} else {
 			throw new \Exception( 'Unknown resource type' );
