@@ -82,6 +82,7 @@ class Optimizer {
 			'keep_exif'   => 0,
 			'cmyktorgb'   => 1,
 			'compression' => Optimizer::COMPRESSION_INTELLIGENT,
+			'webp'        => 0,
 		);
 		$this->separator = DIRECTORY_SEPARATOR;
 	}
