@@ -152,7 +152,7 @@ class Optimizer {
 					$tmp_response = $this->service->get_result( $response->getProcessId(), 1 );
 					if ( $tmp_response->isSuccessful() && ! $tmp_response->isProcessing() ) {
 						$tmp_response->setLocalResources( $resource );
-						$tmp_response->setProcessId( $processID );
+						$tmp_response->setProcessId( $pid );
 
 						return $tmp_response;
 					}

@@ -25,6 +25,7 @@ require_once('src/Tools/FileSystem.php');
 require_once('src/Http/HTTP.php');
 require_once('src/Http/BaseClient.php');
 require_once('src/Http/Client.php');
+require_once('src/Responses/ResultWebP.php');
 require_once('src/Responses/Result.php');
 require_once('src/Responses/Response.php');
 require_once('src/Responses/Profile.php');
