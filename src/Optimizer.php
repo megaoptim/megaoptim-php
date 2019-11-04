@@ -39,7 +39,7 @@ class Optimizer {
 	const RESOURCE_FILES = 'files';
 	const MAX_ALLOWED_RESOURCES = 5;
 
-	const VERSION = '1.0.3';
+	const VERSION = '1.0.4';
 	/**
 	 * @var string
 	 */
@@ -305,4 +305,19 @@ class Optimizer {
 		return $this->service->get_user_info();
 	}
 
+
+	/**
+	 * Is valid compression level?
+	 *
+	 * @param $level
+	 *
+	 * @return bool
+	 */
+	public static function valid_compression_level($level) {
+		return in_array($level, array(
+			self::COMPRESSION_LOSSLESS,
+			self::COMPRESSION_INTELLIGENT,
+			self::COMPRESSION_ULTRA,
+		));
+	}
 }
